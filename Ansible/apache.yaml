@@ -1,0 +1,27 @@
+- name: This sets up an Apache web server
+  hosts: aws_ec2
+  become: yes
+  remote_user: ubuntu
+  gather_facts: true
+  tasks:
+    - name: Install Apache
+      package:
+        name:
+          - "apache2"
+        state: present
+
+    - name: Copy code from local index.html
+      copy:
+        src: "index.html"
+        dest: "/var/www/html/index.html"
+
+    - name: Set permissions on index.html
+      file:
+        path: "/var/www/html/index.html"
+        mode: "644"
+      become: yes
+
+    - name: Start Apache services
+      service:
+        name: apache2
+        state: started
