@@ -16,6 +16,6 @@ if [ $TERRAFORM_ACTION = "destroy" ]; then
 	exit 0
 else
 	cd ../Ansible
-    pip install boto3 --break-system-packages
+        pip install boto3 --break-system-packages
 	ansible-playbook -i /opt/aws_ec2.yaml apache.yaml 
 fi
