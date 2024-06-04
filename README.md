@@ -151,30 +151,8 @@ ansible-inventory -i /opt/aws_ec2.yaml --list
 ![string-para](https://github.com/sudhajobs0107/Terraform-Ansible-Project/blob/main/images/string-para.PNG)
 + ### Now select **git** in Source Code management :-
 ![add-git-repo](https://github.com/sudhajobs0107/Terraform-Ansible-Project/blob/main/images/add-git-repo.PNG)
-+ ### Now in Build Steps → select Executive Shell → add the script given below :-
-```
-#!/bin/bash
-set -xe
-
-cd Terraform
-
-sed -i "s/server_name/${SERVER_NAME}/g" backend.tf
-export TF_VAR_name=${SERVER_NAME}
-
-terraform init
-terraform plan
-terraform $TERRAFORM_ACTION -auto-approve
-
-sleep 60
-
-if [ $TERRAFORM_ACTION = "destroy" ]; then
-	exit 0
-else
-	cd ../Ansible
-        pip install boto3 --break-system-packages
-	ansible-playbook -i /opt/aws_ec2.yaml apache.yaml 
-fi
-```
++ ### Now in Build Steps → select Executive Shell → add the script given in the code :-
+![executive-shell](https://github.com/sudhajobs0107/Terraform-Ansible-Project/blob/main/images/executive-shell.PNG)
 ### Now click Apply and Save → **Build with Parameters** and our pipeline will build successfully.
 ![build](https://github.com/sudhajobs0107/Terraform-Ansible-Project/blob/main/images/build.PNG)
 + ### In this we created 2 instances through terraform and deploy simple website through ansible.
