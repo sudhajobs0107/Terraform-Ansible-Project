@@ -1,12 +1,12 @@
 # **Terraform-Ansible Project :smile:**
 ### In this we will make a jenkins terraform ansible pipeline.
-![Architecture](https://github.com/sudhajobs0107/Monitoring-2-Tier/blob/main/images/monitoring-diagram.gif)
+![Architecture](https://github.com/sudhajobs0107/Terraform-Ansible-Project/blob/main/images/architecture.gif)
 
 ___
 # Prerequisites
 ### Before starting the project you should have these things in your system :-
 >+ ### Account on AWS
->+ ### Code [click here for code](https://github.com/sudhajobs0107/2-Tier-Flask-App-and-MYSQL)
+>+ ### Code [click here for code](https://github.com/sudhajobs0107/Terraform-Ansible-Project.git)
 ___
 ## STEP 1: Launch Instance
 
@@ -58,20 +58,16 @@ ___
 + ### To install terraform use command :-
 ```
 sudo apt update && sudo apt install -y gnupg software-properties-common
-
 wget -O- https://apt.releases.hashicorp.com/gpg | \
         gpg --dearmor | \
         sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
         gpg --no-default-keyring \
         --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
         --fingerprint
-
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
         https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
         sudo tee /etc/apt/sources.list.d/hashicorp.list
-
 sudo apt update && sudo apt -y install terraform
-
 terraform --version
 ```
 ![terra-v](https://github.com/sudhajobs0107/Terraform-Ansible-Project/blob/main/images/terra-v.PNG)
@@ -89,6 +85,7 @@ ansible --version
 + ### Now make sure you have installed python3 & boto3 :-
 ```
 python3 --version
+pip show boto3
 ```
 ![python3&bot3](https://github.com/sudhajobs0107/Terraform-Ansible-Project/blob/main/images/python3%26boto3.PNG)
 + ### Now create a file named aws_ec2.yaml in the /opt directory :-
@@ -154,7 +151,7 @@ ansible-inventory -i /opt/aws_ec2.yaml --list
 ![string-para](https://github.com/sudhajobs0107/Terraform-Ansible-Project/blob/main/images/string-para.PNG)
 + ### Now select **git** in Source Code management :-
 ![add-git-repo](https://github.com/sudhajobs0107/Terraform-Ansible-Project/blob/main/images/add-git-repo.PNG)
-+ ### Now in Build Steps select Executive Shell and add the script given below :-
++ ### Now in Build Steps → select Executive Shell → add the script given below :-
 ```
 #!/bin/bash
 set -xe
@@ -178,9 +175,9 @@ else
 	ansible-playbook -i /opt/aws_ec2.yaml apache.yaml 
 fi
 ```
-### Now click Apply and Save → **Build Now** and our pipeline will build successfully.
+### Now click Apply and Save → **Build with Parameters** and our pipeline will build successfully.
 ![build](https://github.com/sudhajobs0107/Terraform-Ansible-Project/blob/main/images/build.PNG)
-+ ### In this we created 2 ec2 instances through terraform and deploy simple website through ansible.
++ ### In this we created 2 instances through terraform and deploy simple website through ansible.
 ![deploy-my-website](https://github.com/sudhajobs0107/Terraform-Ansible-Project/blob/main/images/deploy-my-website.PNG)
 
 
