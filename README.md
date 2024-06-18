@@ -139,11 +139,12 @@ aws configure
 ```
 + ### Now paste **Access key** and **Secret access key**.
 ![configure](https://github.com/sudhajobs0107/Terraform-Ansible-Project/blob/main/images/configure.PNG)
++ ### Also attach a IAM role to EC2 instance. In IAM role directly attach policy **Administrator Access**.
 + ### Now it’s time to test our dynamic inventory. Run the below ad hoc command to test our dynamic inventory :-
 ```
 ansible-inventory -i /opt/aws_ec2.yaml --list
 ```
-+ ### Change permission 744 of aws_ec2.yaml file and ansible.cfg file. Also change permission 644 of key file.
++ ### Change permission 744 of aws_ec2.yaml file and ansible.cfg file. Also change permission 644 of private key file. Also do sudo chown jenkins:jenkins /etc/ansible/sudha_key.pem.
 + ### Now build a pipeline click on **Create a job** → give name "**Terraform-Ansible-Project**" → select "**Freestyle project**" → click **OK**.
 ![new-item](https://github.com/sudhajobs0107/Terraform-Ansible-Project/blob/main/images/new-item.PNG)
 + ### Now add choice & string parameters :-
